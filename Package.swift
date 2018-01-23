@@ -7,7 +7,7 @@ let package = Package(
     products: [
         .library(
             name: "Alpheus",
-            targets: ["Alpheus", "Map-Reduce"]),
+            targets: ["Alpheus", "MapReduce"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -15,11 +15,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Map-Reduce",
+            name: "Ma-Reduce",
             dependencies: []),
         .target(
             name: "Alpheus",
-            dependencies: ["Map-Reduce"]),
+            dependencies: ["MapReduce"]),
         .testTarget(
             name: "AlpheusTests",
             dependencies: ["Alpheus"]),
