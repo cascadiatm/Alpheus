@@ -1,9 +1,9 @@
 //===----------------------------------------------------------------------===//
-// Mapper.swift
+// Job.swift
 // 
 // This source file is part of the Alpheus open source project
 // https://github.com/cascadiatm/Alpheus
-//
+// 
 // Copyright (c) 2018 Chris Daley <chebizarro@gmail.com>
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +13,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol Mapper<K1,V1,K2,V2> {
+public class Job: JobContext {
 	
-	func cleanup(context: Context)
 	
-	func map(key: K1, value: V1, context: Context)
-	
-	func run(context: Context)
-	
-	func setup(context: Context)
 }
