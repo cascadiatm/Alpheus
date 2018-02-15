@@ -7,19 +7,15 @@ let package = Package(
     products: [
         .library(
             name: "Alpheus",
-            targets: ["Alpheus", "MapReduce"]),
+            targets: ["Alpheus"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+      .Package(url: "https://github.com/PerfectlySoft/Perfect-HTTPServer.git", majorVersion: 3),
     ],
     targets: [
         .target(
-            name: "Ma-Reduce",
-            dependencies: []),
-        .target(
             name: "Alpheus",
-            dependencies: ["MapReduce"]),
+            dependencies: []),
         .testTarget(
             name: "AlpheusTests",
             dependencies: ["Alpheus"]),
