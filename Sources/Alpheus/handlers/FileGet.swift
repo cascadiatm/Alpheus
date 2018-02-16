@@ -14,10 +14,10 @@ extension Handlers {
 			if let id = request.urlVariables["id"] {
 				do {
 					// Set id via "get" method (aka "Find")
-					try files.get(id ?? "")
+					try files.get(Int(id) ?? 0)
 
 					// If id is populated, then we have a successful fetch
-					if files.id != "" {
+					if files.id > 0 {
 						let _ = try? response.setBody(json: files.asDataDict())
 					} else {
 						// Otherwise, exit out of the request
@@ -40,11 +40,11 @@ extension Handlers {
 				}
 
 				// Container for our processed results
-				var data = [String:Any]()
+				var data = [[String:Any]]()
 				for obj in files.rows() {
-					data["\(obj.id)"] = obj.asDataDict()
+					data.append(obj.asDataDict())
 				}
-				let _ = try? response.setBody(json: ["data": data])
+				let _ = try? response.setBody(json: ["total":data.count, "per_page": 15, "data": data])
 			}
             response.completed()
         }

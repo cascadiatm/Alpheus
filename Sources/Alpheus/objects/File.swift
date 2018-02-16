@@ -42,8 +42,6 @@ class File: SQLiteStORM {
 
     func ingest() {
 
-
-
     }
 
 }

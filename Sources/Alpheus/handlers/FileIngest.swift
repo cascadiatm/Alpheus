@@ -10,7 +10,7 @@ extension Handlers {
 
             if let id = request.urlVariables["id"] {
         				do {
-        					try file.get(id)
+        					try file.get(Int(id) ?? 0)
         				} catch {
         					// Return an informative error
         					Handlers.error(request, response, error: "Incorrect ID", code: .badRequest)
@@ -18,7 +18,7 @@ extension Handlers {
         				}
         		}
 
-            if file.id != "" {
+            if file.id > 0 {
       				do {
       					// Attempt deletion
       					try file.ingest()
@@ -35,7 +35,7 @@ extension Handlers {
       				Handlers.error(request, response, error: "Incorrect ID", code: .badRequest)
       				return
       			}
-            
+
             response.completed()
         }
     }

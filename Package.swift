@@ -10,6 +10,7 @@ let package = Package(
             targets: ["Alpheus"]),
     ],
     dependencies: [
+      .package(url: "https://github.com/PerfectlySoft/Perfect-Session.git", from: "3.0.0"),
       .package(url: "https://github.com/PerfectlySoft/Perfect-HTTPServer.git", from: "3.0.0"),
       .package(url: "https://github.com/iamjono/JSONConfig.git", from: "3.0.0"),
       .package(url: "https://github.com/PerfectlySoft/Perfect-CURL.git", from: "3.0.0"),
@@ -21,7 +22,7 @@ let package = Package(
     targets: [
         .target(
             name: "Alpheus",
-            dependencies: ["PerfectHTTPServer","JSONConfig","SQLiteStORM","PerfectRequestLogger","SwiftString", "PerfectCURL"]),
+            dependencies: ["PerfectSession","PerfectHTTPServer","JSONConfig","SQLiteStORM","PerfectRequestLogger","SwiftString", "PerfectCURL"]),
         .testTarget(
             name: "AlpheusTests",
             dependencies: ["Alpheus"]),

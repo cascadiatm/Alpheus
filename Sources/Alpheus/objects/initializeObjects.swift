@@ -16,19 +16,20 @@ extension Utility {
         let a0 = File()
         try? a0.setup()
 
-        let url = "http://data.gdeltproject.org/gdeltv2/masterfilelist-translation.txt"
-
+        //let url = "http://data.gdeltproject.org/gdeltv2/masterfilelist-translation.txt"
+        let url = "http://data.gdeltproject.org/gdeltv2/lastupdate-translation.txt"
         print("Downloading \(url)")
 
         CURLRequest(url).perform {
         	confirmation in
         	do {
+            print("\(url) downloaded")
         		let response = try confirmation()
         		let filesContent: [String] = response.bodyString.components(separatedBy:"\n")
             for line in filesContent {
               let data: [String] = line.components(separatedBy:" ")
               try a0.insert(
-                cols: ["size", "id", "url" ],
+                cols: ["size", "md5", "url" ],
                 params: data
               )
             }
