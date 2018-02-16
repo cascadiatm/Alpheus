@@ -24,11 +24,14 @@ func mainRoutes() -> [[String: Any]] {
     var routes: [[String: Any]] = [[String: Any]]()
     routes.append(["method":"get", "uri":"/**", "handler":PerfectHTTPServer.HTTPHandler.staticFiles, "documentRoot":"./webroot","allowResponseFilters":true])
 
-    /// List all records
+    /// List all files
     routes.append(["method":"get", "uri":"/api/admin/gdelt/v2/file", "handler":Handlers.fileGet])
 
-    /// Return specified detail record
+    /// Return specified file
     routes.append(["method":"get", "uri":"/api/admin/gdelt/v2/file/{id}", "handler":Handlers.fileGet])
+
+    /// Ingest the specified file
+    routes.append(["method":"patch", "uri":"/api/admin/gdelt/v2/file/{id}", "handler":Handlers.fileIngest])
 
     /// Update specified record
     //routes.append(["method":"patch", "uri":"/api/v1/person/{id}", "handler":Handlers.personUpdate])

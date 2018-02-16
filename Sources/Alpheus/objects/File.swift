@@ -36,4 +36,10 @@ class File: SQLiteStORM {
       ingested = this["ingested"] as? Bool ?? false
   	}
 
+    func ingest() {
+
+      
+
+    }
+
 }
