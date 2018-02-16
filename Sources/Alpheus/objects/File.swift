@@ -30,10 +30,10 @@ class File: SQLiteStORM {
     }
 
   	public func fromDict(_ this: [String: Any]) {
-  		size = this["size"] as? Int ?? ""
+  		size = this["size"] as? Int ?? 0
   		id = this["id"] as? String ?? ""
   		url = this["url"] as? String ?? ""
-      ingested = this.data["ingested"] as? Bool ?? false
+      ingested = this["ingested"] as? Bool ?? false
   	}
 
 }

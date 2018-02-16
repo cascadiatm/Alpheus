@@ -14,7 +14,7 @@ extension Handlers {
 			if let id = request.urlVariables["id"] {
 				do {
 					// Set id via "get" method (aka "Find")
-					try files.get(id ?? 0)
+					try files.get(id ?? "")
 
 					// If id is populated, then we have a successful fetch
 					if files.id != "" {

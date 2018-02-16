@@ -60,7 +60,7 @@ extension Handlers {
 			context[i.0] = i.1
 		}
 
-		response.render(template: template, context: context)
+		//response.render(template: template, context: context)
 		response.completed()
 		return
 	}

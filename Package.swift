@@ -6,16 +6,21 @@ let package = Package(
     name: "Alpheus",
     products: [
         .library(
-            name: "Alpheus",
+            name: "AlpheusLib",
             targets: ["Alpheus"]),
     ],
     dependencies: [
-      .Package(url: "https://github.com/PerfectlySoft/Perfect-HTTPServer.git", majorVersion: 3),
+      .package(url: "https://github.com/PerfectlySoft/Perfect-HTTPServer.git", from: "3.0.0"),
+      .package(url: "https://github.com/iamjono/JSONConfig.git", from: "3.0.0"),
+      .package(url: "https://github.com/PerfectlySoft/Perfect-CURL.git", from: "3.0.0"),
+      .package(url: "https://github.com/iamjono/SwiftString.git", from: "2.0.0"),
+      .package(url: "https://github.com/PerfectlySoft/Perfect-RequestLogger.git", from: "3.0.0"),
+      .package(url: "https://github.com/SwiftORM/SQLite-StORM.git", from: "3.0.0"),
     ],
     targets: [
         .target(
             name: "Alpheus",
-            dependencies: []),
+            dependencies: ["PerfectHTTPServer","JSONConfig","SQLiteStORM","PerfectRequestLogger","SwiftString"]),
         .testTarget(
             name: "AlpheusTests",
             dependencies: ["Alpheus"]),
