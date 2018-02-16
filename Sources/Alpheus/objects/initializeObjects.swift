@@ -12,7 +12,7 @@ import PerfectLib
 extension Utility {
     static func initializeObjects() {
 
-        let a0 = Person()
+        let a0 = File()
         try? a0.setup()
 
     }

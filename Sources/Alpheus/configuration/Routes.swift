@@ -25,19 +25,16 @@ func mainRoutes() -> [[String: Any]] {
     routes.append(["method":"get", "uri":"/**", "handler":PerfectHTTPServer.HTTPHandler.staticFiles, "documentRoot":"./webroot","allowResponseFilters":true])
 
     /// List all records
-    routes.append(["method":"get", "uri":"/api/v1/person", "handler":Handlers.personGet])
+    routes.append(["method":"get", "uri":"/api/admin/gdelt/v2/file", "handler":Handlers.fileGet])
 
     /// Return specified detail record
-    routes.append(["method":"get", "uri":"/api/v1/person/{id}", "handler":Handlers.personGet])
-
-    /// Create new record
-    routes.append(["method":"post", "uri":"/api/v1/person", "handler":Handlers.personCreate])
+    routes.append(["method":"get", "uri":""/api/admin/gdelt/v2/file/{id}", "handler":Handlers.personGet])
 
     /// Update specified record
-    routes.append(["method":"patch", "uri":"/api/v1/person/{id}", "handler":Handlers.personUpdate])
+    //routes.append(["method":"patch", "uri":"/api/v1/person/{id}", "handler":Handlers.personUpdate])
 
     /// Delete specified record
-    routes.append(["method":"delete", "uri":"/api/v1/person/{id}", "handler":Handlers.personDelete])
+    //routes.append(["method":"delete", "uri":"/api/v1/person/{id}", "handler":Handlers.personDelete])
 
     return routes
 }
