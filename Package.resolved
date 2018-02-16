@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "CZlib",
+        "repositoryURL": "https://github.com/IBM-Swift/CZlib.git",
+        "state": {
+          "branch": null,
+          "revision": "a781e6ef055fb8f0d608fe30a28e6a0f62ae498b",
+          "version": "0.1.2"
+        }
+      },
+      {
         "package": "JSONConfig",
         "repositoryURL": "https://github.com/iamjono/JSONConfig.git",
         "state": {
@@ -170,6 +179,15 @@
           "branch": null,
           "revision": "a628671f5d84a31bd9d4220eb434da888f364b79",
           "version": "2.0.4"
+        }
+      },
+      {
+        "package": "ZIPFoundation",
+        "repositoryURL": "https://github.com/weichsel/ZIPFoundation/",
+        "state": {
+          "branch": null,
+          "revision": "937d152a0ecec51b80ceead2358a37f0767673f4",
+          "version": "0.9.5"
         }
       }
     ]

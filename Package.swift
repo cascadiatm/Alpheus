@@ -16,6 +16,7 @@ let package = Package(
       .package(url: "https://github.com/iamjono/SwiftString.git", from: "2.0.0"),
       .package(url: "https://github.com/PerfectlySoft/Perfect-RequestLogger.git", from: "3.0.0"),
       .package(url: "https://github.com/SwiftORM/SQLite-StORM.git", from: "3.0.0"),
+      .package(url: "https://github.com/weichsel/ZIPFoundation/", .upToNextMajor(from: "0.9.0")),
     ],
     targets: [
         .target(
