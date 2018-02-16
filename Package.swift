@@ -21,7 +21,7 @@ let package = Package(
     targets: [
         .target(
             name: "Alpheus",
-            dependencies: ["PerfectHTTPServer","JSONConfig","SQLiteStORM","PerfectRequestLogger","SwiftString"]),
+            dependencies: ["PerfectHTTPServer","JSONConfig","SQLiteStORM","PerfectRequestLogger","SwiftString", "PerfectCURL"]),
         .testTarget(
             name: "AlpheusTests",
             dependencies: ["Alpheus"]),
