@@ -2,10 +2,10 @@ import PerfectHTTP
 import StORM
 
 extension Handlers {
-    /// API endpoint for handling the fetch of a record, or a list
-    static func fileGet(data: [String:Any]) throws -> RequestHandler {
-        return {
-        request, response in
+	/// API endpoint for handling the fetch of a record, or a list
+	static func fileGet(data: [String:Any]) throws -> RequestHandler {
+		return {
+			request, response in
 
 			// Initial stub object.
 			// Holds either the individual response, or the list response
@@ -31,35 +31,35 @@ extension Handlers {
 				}
 			} else {
 				// Execute a list fetch
-        var page = 0
-        var limit = 10
-        var count = 0
+				var page = 0
+				var limit = 10
+				var count = 0
 				do {
-          for (param, value) in request.queryParams {
-            if param == "page" {
-              page = Int(value) ?? 0
-            } else if param == "per_page" {
-              limit = Int(value) ?? 10
-            }
-          }
+					for (param, value) in request.queryParams {
+						if param == "page" {
+							page = Int(value) ?? 0
+						} else if param == "per_page" {
+							limit = Int(value) ?? 10
+						}
+					}
 
-          if page > 0 {
-            let offset = (page - 1) * limit
-            let cursor = StORMCursor(limit: limit, offset: offset)
+					if page > 0 {
+						let offset = (page - 1) * limit
+						let cursor = StORMCursor(limit: limit, offset: offset)
 
-            try files.select(
-              columns: [],
-              whereclause: "1",
-      				params: [],
-      				orderby: [],
-      				cursor: cursor
-            )
-            count = files.results.cursorData.totalRecords
-            //print("Total records \(files.results.cursorData)")
-          } else {
-  					// Basic findall method
-  					try files.findAll()
-          }
+						try files.select(
+							columns: [],
+							whereclause: "1",
+							params: [],
+							orderby: [],
+							cursor: cursor
+						)
+						count = files.results.cursorData.totalRecords
+						//print("Total records \(files.results.cursorData)")
+					} else {
+						// Basic findall method
+						try files.findAll()
+					}
 				} catch {
 					// Return an informative error
 					Handlers.error(request, response, error: "\(error)", code: .badRequest)
@@ -71,21 +71,27 @@ extension Handlers {
 				for obj in files.rows() {
 					data.append(obj.asDataDict())
 				}
-        var pagination: [String: Any] = [:]
+				var pagination: [String: Any] = [:]
 
-        if page > 0 {
-          pagination["total"] = count
-          pagination["per_page"] = limit
-          pagination["current_page"] = page
-          pagination["last_page"] = count / limit
-          pagination["next_page_url"] = nil
-          pagination["prev_page_url"] = nil
-          pagination["from"] = data[0]["id"]
-          pagination["to"] = data[data.count - 1]["id"]
-        }
+				if page > 0 {
+					var lastPage =  count / limit
+					let remd = count - (limit * lastPage)
+					if remd > 0 {
+						lastPage += 1
+					}
+
+					pagination["total"] = count
+					pagination["per_page"] = limit
+					pagination["current_page"] = page
+					pagination["last_page"] = lastPage
+					pagination["next_page_url"] = nil
+					pagination["prev_page_url"] = nil
+					pagination["from"] = data[0]["id"]
+					pagination["to"] = data[data.count - 1]["id"]
+				}
 				let _ = try? response.setBody(json: ["links":["pagination" : pagination], "data": data])
 			}
-            response.completed()
-        }
-    }
+			response.completed()
+		}
+	}
 }

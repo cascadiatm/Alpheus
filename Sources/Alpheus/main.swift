@@ -51,7 +51,6 @@ Utility.initializeObjects()
 
 // Load Filters
 confData["servers"]?[0]["filters"] = filters()
-
 // Load Routes
 confData["servers"]?[0]["routes"] = mainRoutes()
 
