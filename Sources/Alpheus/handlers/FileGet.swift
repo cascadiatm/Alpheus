@@ -31,11 +31,10 @@ extension Handlers {
 				}
 			} else {
 				// Execute a list fetch
+        var page = 0
+        var limit = 10
+        var count = 0
 				do {
-
-          var page = 0
-          var limit = 10
-
           for (param, value) in request.queryParams {
             if param == "page" {
               page = Int(value) ?? 0
@@ -55,6 +54,8 @@ extension Handlers {
       				orderby: [],
       				cursor: cursor
             )
+            count = files.results.cursorData.totalRecords
+            //print("Total records \(files.results.cursorData)")
           } else {
   					// Basic findall method
   					try files.findAll()
@@ -70,7 +71,16 @@ extension Handlers {
 				for obj in files.rows() {
 					data.append(obj.asDataDict())
 				}
-				let _ = try? response.setBody(json: ["total":data.count, "per_page": 10, "data": data])
+        var pagination: [String: Any] = [:]
+
+        if page > 0 {
+          pagination["total"] = count
+          pagination["per_page"] = limit
+          pagination["current_page"] = page
+          pagination["last_page"] = count / limit
+
+        }
+				let _ = try? response.setBody(json: ["links":["pagination" : pagination], "data": data])
 			}
             response.completed()
         }
