@@ -78,7 +78,10 @@ extension Handlers {
           pagination["per_page"] = limit
           pagination["current_page"] = page
           pagination["last_page"] = count / limit
-
+          pagination["next_page_url"] = nil
+          pagination["prev_page_url"] = nil
+          pagination["from"] = data[0]["id"]
+          pagination["to"] = data[data.count - 1]["id"]
         }
 				let _ = try? response.setBody(json: ["links":["pagination" : pagination], "data": data])
 			}

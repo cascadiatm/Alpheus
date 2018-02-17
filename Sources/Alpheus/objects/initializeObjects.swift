@@ -18,12 +18,10 @@ extension Utility {
 
         //let url = "http://data.gdeltproject.org/gdeltv2/masterfilelist-translation.txt"
         let url = "http://data.gdeltproject.org/gdeltv2/lastupdate-translation.txt"
-        print("Downloading \(url)")
 
         CURLRequest(url).perform {
         	confirmation in
         	do {
-            print("\(url) downloaded")
         		let response = try confirmation()
         		let filesContent: [String] = response.bodyString.components(separatedBy:"\n")
             for line in filesContent {
