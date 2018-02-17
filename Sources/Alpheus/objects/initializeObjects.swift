@@ -28,13 +28,14 @@ extension Utility {
         		let filesContent: [String] = response.bodyString.components(separatedBy:"\n")
             for line in filesContent {
               let data: [String] = line.components(separatedBy:" ")
-              try a0.insert(
-                cols: ["size", "md5", "url" ],
-                params: data
-              )
+
+              if data.count == 3 {
+                try a0.insert(
+                  cols: ["size", "md5", "url" ],
+                  params: data
+                )
+              }
             }
-
-
         	} catch let error as CURLResponse.Error {
         		print("Failed: response code \(error.response.responseCode)")
         	} catch {

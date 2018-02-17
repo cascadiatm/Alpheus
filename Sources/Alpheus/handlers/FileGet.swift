@@ -1,4 +1,5 @@
 import PerfectHTTP
+import StORM
 
 extension Handlers {
     /// API endpoint for handling the fetch of a record, or a list
@@ -31,8 +32,33 @@ extension Handlers {
 			} else {
 				// Execute a list fetch
 				do {
-					// Basic findall method
-					try files.findAll()
+
+          var page = 0
+          var limit = 10
+
+          for (param, value) in request.queryParams {
+            if param == "page" {
+              page = Int(value) ?? 0
+            } else if param == "per_page" {
+              limit = Int(value) ?? 10
+            }
+          }
+
+          if page > 0 {
+            let offset = (page - 1) * limit
+            let cursor = StORMCursor(limit: limit, offset: offset)
+
+            try files.select(
+              columns: [],
+              whereclause: "1",
+      				params: [],
+      				orderby: [],
+      				cursor: cursor
+            )
+          } else {
+  					// Basic findall method
+  					try files.findAll()
+          }
 				} catch {
 					// Return an informative error
 					Handlers.error(request, response, error: "\(error)", code: .badRequest)
@@ -44,7 +70,7 @@ extension Handlers {
 				for obj in files.rows() {
 					data.append(obj.asDataDict())
 				}
-				let _ = try? response.setBody(json: ["total":data.count, "per_page": 15, "data": data])
+				let _ = try? response.setBody(json: ["total":data.count, "per_page": 10, "data": data])
 			}
             response.completed()
         }
