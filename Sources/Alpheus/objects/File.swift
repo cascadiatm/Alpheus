@@ -1,6 +1,7 @@
 import PerfectLib
 import SQLiteStORM
 import StORM
+import Foundation
 
 class File: SQLiteStORM {
 
@@ -13,6 +14,8 @@ class File: SQLiteStORM {
     public var url = ""
 
     public var ingested = false
+
+		public var date = Date()
 
     override public func to(_ this: StORMRow) {
         id = this.data["id"] as? Int ?? 0
