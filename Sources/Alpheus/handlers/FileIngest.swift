@@ -1,7 +1,7 @@
 import PerfectHTTP
 
 extension Handlers {
-    /// API endpoint for handling the deletion of a record
+    /// API endpoint for handling the ingestion of a file
     static func fileIngest(data: [String:Any]) throws -> RequestHandler {
         return {
         request, response in
@@ -20,7 +20,7 @@ extension Handlers {
 
             if file.id > 0 {
       				do {
-      					// Attempt deletion
+      					// Attempt ingestion
       					try file.ingest()
 
       					// Success
