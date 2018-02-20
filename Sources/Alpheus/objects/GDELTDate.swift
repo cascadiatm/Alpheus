@@ -8,7 +8,7 @@ public class GDELTDate {
 		df.dateFormat = "yyyyMMddhhmmss"
 		df.timeZone = TimeZone(secondsFromGMT: 0)
 		return df
-	}
+	}()
 
 	var _date = Date()
 
