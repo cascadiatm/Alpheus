@@ -15,7 +15,7 @@ class File: SQLiteStORM {
 
     public var ingested = false
 
-		public var date = Date()
+		//public var date = Date()
 
     override public func to(_ this: StORMRow) {
         id = this.data["id"] as? Int ?? 0

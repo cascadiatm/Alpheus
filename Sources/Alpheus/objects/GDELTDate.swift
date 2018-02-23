@@ -10,6 +10,10 @@ public class GDELTDate {
 		return df
 	}()
 
-	var _date = Date()
+	public var date: Date
+
+	public init(_ date: String) {
+		self.date = GDELTDate.formatter.date(from: date) ?? Date() 
+	}
 
 }
